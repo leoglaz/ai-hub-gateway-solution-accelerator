@@ -565,7 +565,7 @@ param enableUnifiedAiApi bool = true
 // Load abbreviations from JSON file
 var abbrs = loadJsonContent('./abbreviations.json')
 // Generate a unique token for resources
-var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
+var resourceToken = toLower(uniqueString(subscription().id, environmentName, location, resourceGroupName))
 
 // Transform aiFoundryModelsConfig to include the actual aiservice names based on aiserviceIndex
 var transformedAiFoundryModelsConfig = [for model in aiFoundryModelsConfig: union(model, {

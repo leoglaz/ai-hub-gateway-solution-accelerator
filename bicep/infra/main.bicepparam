@@ -9,7 +9,7 @@ using './main.bicep'
 param environmentName = 'ai-hub-citadel-dev'
 param location = 'canadacentral'
 param apicLocation = 'canadacentral'  // APIC in same region for lower latency
-param resourceGroupName = 'ailz-ai-gateway-dev-cc'  // New RG in canadacentral
+param resourceGroupName = 'ailz-apim-dev'  // New RG in canadacentral
 param tags = {
   'azd-env-name': 'ai-hub-citadel-dev'
   SecurityControl: 'Ignore'
@@ -28,8 +28,9 @@ param eventHubCapacityUnits = 1
 // Enable dashboards for monitoring during development
 param createAppInsightsDashboards = false
 
-// Disable API Center in dev to save costs
+// API Center (custom name to avoid global name collision)
 param enableAPICenter = true
+//param apicServiceName = 'apic-citadel-dev-cc'
 
 // Enable features for testing
 param enableAIFoundry = true
