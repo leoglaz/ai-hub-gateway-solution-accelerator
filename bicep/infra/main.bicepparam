@@ -68,6 +68,9 @@ param apimSubnetName = 'APIMSubnet'
 param privateEndpointSubnetName = 'PrivateEndpointSubnet'
 param functionAppSubnetName = 'LogicAppSubnet'
 
+// DNS zones live in the same RG as the existing VNet
+param dnsZoneRG = 'rg-aiml2-lz-dev-canadcentral3'
+
 // AI Foundry instances in canadaeast (Azure OpenAI available region)
 param aiFoundryInstances = [
   {

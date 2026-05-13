@@ -126,13 +126,12 @@ resource functionAppSettings 'Microsoft.Web/sites/config@2024-04-01' = {
   properties: {
       APPLICATIONINSIGHTS_CONNECTION_STRING: applicationInsights.properties.ConnectionString
       AzureWebJobsStorage: storageAccountConnectionString
-      //AzureWebJobsStorage__accountname: storageAccountName      
       FUNCTIONS_EXTENSION_VERSION:  '~4'
       FUNCTIONS_WORKER_RUNTIME: 'node'
       WEBSITE_NODE_DEFAULT_VERSION: '~20'
       WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: storageAccountConnectionString
       WEBSITE_CONTENTSHARE: fileShareName
-      WEBSITE_VNET_ROUTE_ALL: '0'
+      WEBSITE_VNET_ROUTE_ALL: '1'
       WEBSITE_CONTENTOVERVNET: '1'
       eventHub_fullyQualifiedNamespace: '${eventHubNamespaceName}.servicebus.windows.net'
       eventHub_name: eventHubName

@@ -70,6 +70,10 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
     minimumTlsVersion: 'TLS1_2'
     publicNetworkAccess: 'Disabled'
     allowBlobPublicAccess: false
+    // IMPORTANT: Logic App Standard (WS1) requires allowSharedKeyAccess: true
+    // for the content file share mount (WEBSITE_CONTENTAZUREFILECONNECTIONSTRING).
+    // A policy exemption is required if a 'deny shared key' policy is active.
+    allowSharedKeyAccess: true
     accessTier: 'Hot'
     networkAcls: {
       bypass: 'None'
