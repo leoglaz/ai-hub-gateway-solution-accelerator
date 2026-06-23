@@ -311,6 +311,9 @@ param apimSkuUnits int = 1
 @description('Event Hub capacity units.')
 param eventHubCapacityUnits int = 1
 
+@description('Enable zone redundancy for the Event Hub namespace. Set to false in regions without availability zones (e.g. canadaeast).')
+param eventHubZoneRedundant bool = true
+
 @description('Cosmos DB throughput in Request Units (RUs).')
 param cosmosDbRUs int = 400
 
@@ -919,6 +922,7 @@ module eventHub './modules/event-hub/event-hub.bicep' = {
     dnsSubscriptionId: !empty(dnsSubscriptionId) ? dnsSubscriptionId : subscription().subscriptionId
     dnsZoneResourceId: existingEventHubDnsZoneId
     capacity: eventHubCapacityUnits
+    zoneRedundant: eventHubZoneRedundant
   }
 }
 

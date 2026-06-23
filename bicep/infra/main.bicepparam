@@ -3,11 +3,11 @@ using './main.bicep'
 // ============================================================================
 // BASIC PARAMETERS
 // ============================================================================
-param environmentName = readEnvironmentVariable('AZURE_ENV_NAME', 'citadel-dev')
-param location = readEnvironmentVariable('AZURE_LOCATION', 'swedencentral')
-param apicLocation = readEnvironmentVariable('APIC_LOCATION', 'swedencentral')
+param environmentName = readEnvironmentVariable('AZURE_ENV_NAME', 'ailz-hub-dev-01')
+param location = readEnvironmentVariable('AZURE_LOCATION', 'canadaeast')
+param apicLocation = readEnvironmentVariable('APIC_LOCATION', 'canadacentral')
 param tags = {
-  'azd-env-name': readEnvironmentVariable('AZURE_ENV_NAME', 'citadel-dev')
+  'azd-env-name': readEnvironmentVariable('AZURE_ENV_NAME', 'ailz-hub-dev-01')
   SecurityControl: 'Ignore'
 }
 
@@ -125,7 +125,7 @@ param enableAzureAISearch = bool(readEnvironmentVariable('ENABLE_AZURE_AI_SEARCH
 param enableAIGatewayPiiRedaction = bool(readEnvironmentVariable('ENABLE_PII_REDACTION', 'true'))
 param enableOpenAIRealtime = bool(readEnvironmentVariable('ENABLE_OPENAI_REALTIME', 'true'))
 param entraAuth = bool(readEnvironmentVariable('AZURE_ENTRA_AUTH', 'false'))
-param enableAPICenter = bool(readEnvironmentVariable('ENABLE_API_CENTER', 'false'))
+param enableAPICenter = bool(readEnvironmentVariable('ENABLE_API_CENTER', 'true'))
 param enableManagedRedis = bool(readEnvironmentVariable('ENABLE_MANAGED_REDIS', 'true'))
 param enableUnifiedAiApi = bool(readEnvironmentVariable('ENABLE_UNIFIED_AI_API', 'true'))
 
@@ -162,14 +162,16 @@ param appInsightsLogSettings = {
 // ============================================================================
 // COMPUTE SKU & SIZE - SKUs and capacity settings for services
 // ============================================================================
-param apimSku = readEnvironmentVariable('APIM_SKU', 'StandardV2')
+param apimSku = readEnvironmentVariable('APIM_SKU', 'Developer')
 param apimSkuUnits = int(readEnvironmentVariable('APIM_SKU_UNITS', '1'))
 param eventHubCapacityUnits = int(readEnvironmentVariable('EVENTHUB_CAPACITY', '1'))
+// Set EVENTHUB_ZONE_REDUNDANT=false in regions without availability zones (e.g. canadaeast)
+param eventHubZoneRedundant = bool(readEnvironmentVariable('EVENTHUB_ZONE_REDUNDANT', 'true'))
 param cosmosDbRUs = int(readEnvironmentVariable('COSMOS_DB_RUS', '400'))
 param logicAppsSkuCapacityUnits = int(readEnvironmentVariable('LOGIC_APPS_SKU_CAPACITY_UNITS', '1'))
 param apicSku = readEnvironmentVariable('APIC_SKU', 'Free')
 param keyVaultSkuName = readEnvironmentVariable('KEY_VAULT_SKU_NAME', 'standard')
-param redisSkuName = readEnvironmentVariable('REDIS_SKU_NAME', 'Balanced_B1')
+param redisSkuName = readEnvironmentVariable('REDIS_SKU_NAME', 'Balanced_B0')
 param redisSkuCapacity = int(readEnvironmentVariable('REDIS_SKU_CAPACITY', '1'))
 
 // ============================================================================
