@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Override any value by exporting it before running a script.
+SUBSCRIPTION_ID="${SUBSCRIPTION_ID:-c43a7559-6052-495e-ac6f-bbadb08d2768}"
+LOCATION="${LOCATION:-canadacentral}"
+
+HUB_RESOURCE_GROUP="${HUB_RESOURCE_GROUP:-ailz-networking-hub-rg}"
+HUB_VNET_NAME="${HUB_VNET_NAME:-vnet-ailz-vpn-hub}"
+HUB_VNET_PREFIX="${HUB_VNET_PREFIX:-10.250.0.0/24}"
+GATEWAY_SUBNET_PREFIX="${GATEWAY_SUBNET_PREFIX:-10.250.0.0/26}"
+
+VPN_GATEWAY_NAME="${VPN_GATEWAY_NAME:-vpng-ailz-hub}"
+VPN_GATEWAY_PUBLIC_IP_NAME="${VPN_GATEWAY_PUBLIC_IP_NAME:-pip-vpng-ailz-hub}"
+VPN_GATEWAY_SKU="${VPN_GATEWAY_SKU:-VpnGw1AZ}"
+VPN_CLIENT_ADDRESS_POOL="${VPN_CLIENT_ADDRESS_POOL:-172.31.250.0/24}"
+
+SPOKE_RESOURCE_GROUP="${SPOKE_RESOURCE_GROUP:-ailz-hub-cc-coc-dev-1-rg}"
+SPOKE_VNET_NAME="${SPOKE_VNET_NAME:-vnet-evnrrnxguzl5u}"
+HUB_TO_SPOKE_PEERING_NAME="${HUB_TO_SPOKE_PEERING_NAME:-peer-vpn-hub-to-ailz}"
+SPOKE_TO_HUB_PEERING_NAME="${SPOKE_TO_HUB_PEERING_NAME:-peer-ailz-to-vpn-hub}"
+
+# Microsoft-registered Azure VPN Client application ID.
+VPN_AAD_AUDIENCE="${VPN_AAD_AUDIENCE:-c632b3df-fb67-4d84-bdcf-b95ad541b5c8}"

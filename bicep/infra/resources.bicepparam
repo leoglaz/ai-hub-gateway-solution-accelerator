@@ -227,17 +227,6 @@ param aiFoundryModelsConfig = [
     aiserviceIndex: 0
   }
   {
-    name: 'gpt-image-1.5'
-    publisher: 'OpenAI'
-    version: '2025-12-16'
-    sku: 'GlobalStandard'
-    capacity: 2
-    retirementDate: '2026-12-16'
-    inferenceApiVersion: '2025-04-01-preview'
-    apiVersion: '2025-04-01-preview'
-    aiserviceIndex: 0
-  }
-  {
     name: 'MAI-Image-2.5-Flash'
     publisher: 'Microsoft'
     version: '2026-06-02'

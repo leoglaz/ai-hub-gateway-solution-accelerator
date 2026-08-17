@@ -186,7 +186,7 @@ param aiSearchInstances = []
 // Per-instance `networkInjectionEnabled` opts the specific Foundry into (or out of)
 // agent network injection. Omit it to inherit the global foundryNetworkInjectionEnabled flag.
 // Agent subnet is regional - typically only enable injection for the instance in the VNet's region.
-param aiFoundryInstances = [
+param aiFoundryInstances = !empty(readEnvironmentVariable('AI_FOUNDRY_INSTANCES', '')) ? json(readEnvironmentVariable('AI_FOUNDRY_INSTANCES', '[]')) : [
   {
     name: readEnvironmentVariable('AI_FOUNDRY_RESOURCE_NAME', '')
     location: readEnvironmentVariable('AZURE_LOCATION', 'eastus')
@@ -206,7 +206,7 @@ param aiFoundryInstances = [
 //   - apiVersion: API version for OpenAI-type requests (default: '2024-02-15-preview')
 //   - timeout: Request timeout in seconds (default: 120)
 //   - inferenceApiVersion: API version for inference-type requests (e.g., '2024-05-01-preview' for non-OpenAI models)
-param aiFoundryModelsConfig = [
+param aiFoundryModelsConfig = !empty(readEnvironmentVariable('AI_FOUNDRY_MODELS_CONFIG', '')) ? json(readEnvironmentVariable('AI_FOUNDRY_MODELS_CONFIG', '[]')) : [
   {
     name: 'gpt-4.1'
     publisher: 'OpenAI'
@@ -225,17 +225,6 @@ param aiFoundryModelsConfig = [
     sku: 'GlobalStandard'
     capacity: 100
     retirementDate: '2027-02-05'
-    aiserviceIndex: 0
-  }
-  {
-    name: 'gpt-image-1.5'
-    publisher: 'OpenAI'
-    version: '2025-12-16'
-    sku: 'GlobalStandard'
-    capacity: 2
-    retirementDate: '2026-12-16'
-    inferenceApiVersion: '2025-04-01-preview'
-    apiVersion: '2025-04-01-preview'
     aiserviceIndex: 0
   }
   {

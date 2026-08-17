@@ -311,6 +311,9 @@ param apimSkuUnits int = 1
 @description('Event Hub capacity units.')
 param eventHubCapacityUnits int = 1
 
+@description('Enables Event Hubs zone redundancy. Defaults to disabled in Canada East, where the feature is unsupported.')
+param eventHubZoneRedundant bool = toLower(location) != 'canadaeast'
+
 @description('Cosmos DB throughput in Request Units (RUs).')
 param cosmosDbRUs int = 400
 
@@ -442,7 +445,7 @@ param aiFoundryInstances array = [
 @metadata({
   example: '''
   Each model object should have:
-  - name: Model name (required) - e.g., 'gpt-4o', 'DeepSeek-R1'
+  - name: Model name (required) - e.g., 'gpt-4o', 'DeepSeek-V3.2'
   - publisher: Publisher/format identifier, e.g., 'OpenAI', 'DeepSeek', 'Microsoft' (used as modelFormat in backend config)
   - version: Version of the model
   - sku: SKU name for the deployment, e.g., 'GlobalStandard', 'Standard'
@@ -477,7 +480,7 @@ param aiFoundryModelsConfig array = [
     aiserviceIndex: 0
   }
   {
-    name: 'DeepSeek-R1'
+    name: 'DeepSeek-V3.2'
     publisher: 'DeepSeek'
     version: '1'
     sku: 'GlobalStandard'
@@ -513,7 +516,7 @@ param aiFoundryModelsConfig array = [
     aiserviceIndex: 1
   }
   {
-    name: 'DeepSeek-R1'
+    name: 'DeepSeek-V3.2'
     publisher: 'DeepSeek'
     version: '1'
     sku: 'GlobalStandard'
@@ -645,6 +648,7 @@ module resources './resources.bicep' = {
     apimSku: apimSku
     apimSkuUnits: apimSkuUnits
     eventHubCapacityUnits: eventHubCapacityUnits
+    eventHubZoneRedundant: eventHubZoneRedundant
     cosmosDbRUs: cosmosDbRUs
     logicAppsSkuCapacityUnits: logicAppsSkuCapacityUnits
     apicSku: apicSku
